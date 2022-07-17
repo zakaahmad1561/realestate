@@ -8,5 +8,28 @@
     <strong>Description:</strong>
     <%= article.description %>
   </p>
+  <% if article.attachments.any? %>
+    <div class="row">
+    <%= form_tag destroy_multiple_articles_path, method: :Get do %> 
+      <%= hidden_field_tag :id , article.id %>
+      <% article.attachments.reverse.each do |attachment| %>
+        <% attachment.files.each do |pic| %>
+          <div class="col-lg-4  mb-3">
+            <div class="card attach__card">
+              <div class="card-body">
+                <%= check_box_helper(pic)%>
+                <div class="item"><%=user_image_helper(pic)%> </div>
+                <div class="item video_div"> <%=user_video_helper(pic)%></div>
+                <% if pic.blob.filename.to_s.include?('pdf') %>
+                  <div class="item"> <%=user_documents_helper(pic)%></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= submit_tag "Delete selected", :class => 'btn btn-primary  deleteselect_btn' %>
+        <%end%>
+      <%end %>
+    <%end%>
+  <% end %>
 
 </div>

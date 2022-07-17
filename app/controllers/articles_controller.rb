@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[ show edit update destroy destroy_multiple]
 
   # GET /articles or /articles.json
   def index
@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @article.attachments.build
   end
 
   # GET /articles/1/edit
@@ -57,6 +58,21 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    @attachments = @article.attachments
+    @attachments.each do |attachment|
+      @selected_files = attachment.files.where(id: params[:files_ids])
+      @selected_files.each do |files|
+        Cloudinary::Api.delete_resources(files.key, :type => :private)
+        files.destroy
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to @article, notice: "Attachment was successfully deleted."}
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -65,6 +81,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, attachments_attributes: [:id, files: [] ])
     end
 end

@@ -23,7 +23,11 @@
           <a href="<%= pages_contact_path %>" class="nav-link">Contact</a>
         </li>
       </ul>
+      <ul class="navbar-nav ms-auto">
+        <%= render 'layouts/session_manager' %>
+      </ul>
     </div>
+
   </div>
 </nav>
 <nav class="navbar navbar-expand navbar-light sub__navbar">

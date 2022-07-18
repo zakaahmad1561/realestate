@@ -42,7 +42,7 @@ Devise.setup do |config|
   config.warden do |manager|
     manager.failure_app = TurboFailureApp
   end
-  config.mailer_sender = 'zakaahmad1561@gmail.com'
+  config.mailer_sender = 'zaka.ahmad@ucp.edu.pk'
   
 
   # Configure the class responsible to send e-mails.

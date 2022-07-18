@@ -18,49 +18,55 @@
     >
         <div class="col-lg-6">
         <h4>Send an Enquiry</h4>
-        <form action="">
+        <%= form_tag pages_contact_path, method: :Post do %> 
             <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input
-                type="text"
-                class="form-control"
-                id="name"
-                aria-describedby="emailHelp"
-                placeholder="Name....."
-            />
+                <label for="name" class="form-label">Name:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    aria-describedby="emailHelp"
+                    placeholder="Name....."
+                />
             </div>
             <div class="mb-3">
-            <label for="num" class="form-label">Number:</label>
-            <input
-                type="tel"
-                class="form-control"
-                id="num"
-                aria-describedby="emailHelp"
-                placeholder="Number....."
-            />
+                <label for="num" class="form-label">Number:</label>
+                <input
+                    type="tel"
+                    class="form-control"
+                    id="num"
+                    name="num"
+                    aria-describedby="emailHelp"
+                    placeholder="Number....."
+                />
             </div>
             <div class="mb-3">
-            <label for="em" class="form-label">Email:</label>
-            <input
-                type="email"
-                class="form-control"
-                id="em"
-                aria-describedby="emailHelp"
-                placeholder="Email....."
-            />
+                <label for="email" class="form-label">Email:</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    aria-describedby="emailHelp"
+                    placeholder="Email....."
+                />
             </div>
             <div class="mb-3">
-            <label for="mess" class="form-label">Message:</label>
-            <textarea
-                class="form-control"
-                name=""
-                id="mess"
-                cols="30"
-                rows="10"
-                placeholder="Message....."
-            ></textarea>
+                 <label for="message" class="form-label">Message:</label>
+                <textarea
+                    class="form-control"
+                    id="mess"
+                    name="message"
+                    cols="30"
+                    rows="10"
+                    aria-describedby="emailHelp"
+                    placeholder="Message....."
+                ></textarea>
+                
             </div>
-        </form>
+            <%= submit_tag "Send Message", :class => 'btn btn-primary  deleteselect_btn' %>
+        <% end %>
         </div>
         <div class="col-lg-6">
         <h4>Location</h4>

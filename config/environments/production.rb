@@ -106,7 +106,7 @@ Rails.application.configure do
   # }
   ActionMailer::Base.smtp_settings = {
     :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    :password => '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', # This is the secret sendgrid API key which was issued during API key creation
+    :password => ENV['password'], # This is the secret sendgrid API key which was issued during API key creation
     :domain => 'https://khizarhayat.herokuapp.com/',
     :address => 'smtp.sendgrid.net',
     :port => 587,
